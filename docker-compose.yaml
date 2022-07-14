@@ -1,0 +1,23 @@
+
+version: '3.9'
+services:
+  nodejs-server:
+    build:
+      context: ./samvel_node_backend
+      dockerfile: Dockerfile
+    ports:
+      - "2022:2022"
+    container_name: node-api
+    volumes:
+      - ./samvel_node_backend:/app/api
+      - /app/api/node_modules
+  vue-ui:
+    build:
+      context: ./samvel_vue_frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    container_name: vue-ui
+    volumes:
+      - ./samvel_vue_frontend:/app/ui
+      - /app/ui/node_modules
